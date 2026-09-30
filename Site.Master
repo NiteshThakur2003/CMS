@@ -1,0 +1,98 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CredentialManagementPortal.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %></title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link runat="server" href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link runat="server" href="~/Content/credential-pages.css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <style>
+        html, body { min-height: 100%; }
+        .app-layout { display: flex; min-height: 100vh; background: #f4f6f9; }
+        .app-sidebar { width: 218px; flex: 0 0 218px; background: #09263a; color: #d4e1ec; padding: 22px 13px; }
+        .app-sidebar-brand { color: #fff; font-size: 20px; font-weight: 700; padding: 0 12px 24px; border-bottom: 1px solid rgba(255,255,255,.12); margin-bottom: 18px; }
+        .app-sidebar-brand > span { color: #fff; }
+        .app-brand-icon { width: 21px; height: 21px; margin-right: 9px; fill: none; stroke: #4f9bf8; stroke-width: 1.8; vertical-align: -4px; }
+        .app-sidebar-nav { display: flex; flex-direction: column; gap: 5px; }
+        .app-nav-link { color: #c6d4e0; text-decoration: none; border-radius: 7px; padding: 11px 12px; font-size: 14px; display: flex; align-items: center; gap: 11px; }
+        .app-nav-link:hover, .app-nav-link.active { background: #2878d0; color: #fff; text-decoration: none; }
+        .app-nav-icon { width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 18px; color: #9eb3c5; }
+        .app-nav-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+        .app-nav-link:hover .app-nav-icon, .app-nav-link.active .app-nav-icon { color: #fff; }
+        .app-content { flex: 1; min-width: 0; background: #f4f6f9; }
+        @media(max-width:760px) {
+            .app-layout { display: block; }
+            .app-sidebar { width: 100%; padding: 14px; }
+            .app-sidebar-brand { padding: 0 10px 13px; margin-bottom: 10px; }
+            .app-sidebar-nav { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); }
+            .app-nav-link { padding: 9px; }
+        }
+    </style>
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="app-layout">
+            <asp:PlaceHolder ID="phAppSidebar" runat="server">
+                <aside class="app-sidebar">
+                    <div class="app-sidebar-brand"><svg class="app-brand-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 21.2 12 12 21.2 2.8 12 12 2.8Z"/><path d="m12 7.5 4.5 4.5-4.5 4.5L7.5 12 12 7.5Z"/></svg><span>CMS</span></div>
+                    <nav class="app-sidebar-nav" aria-label="Main navigation">
+                        <a id="navDashboard" runat="server" href="~/Dashboard" class="app-nav-link"><span class="app-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="7" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/><rect x="13.5" y="13.5" width="7" height="7" rx="1"/></svg></span>Dashboard</a>
+                        <a id="navVpn" runat="server" href="~/VPNLoingDetails.aspx" class="app-nav-link"><span class="app-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 19.5 6v5.1c0 5-3.2 8.3-7.5 10.1-4.3-1.8-7.5-5.1-7.5-10.1V6L12 2.8Z"/><path d="M9 12h6M12 9v6"/></svg></span>VPN Login Details</a>
+                        <a id="navAx" runat="server" href="~/AXLoginDetails.aspx" class="app-nav-link"><span class="app-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="m8 16 4-9 4 9m-6.5-3h5"/></svg></span>AX Login Details</a>
+                        <a id="navEmail" runat="server" href="~/EmailAccountDetails.aspx" class="app-nav-link"><span class="app-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>Email Accounts</a>
+                        <a id="navProductKeys" runat="server" href="~/ProductKeys.aspx" class="app-nav-link"><span class="app-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8 2 2-2 2 2 2-3 3-2-2-2 2"/></svg></span>Product Keys</a>                        <a id="navDomainSsl" runat="server" href="~/DomainAndSSL.aspx" class="app-nav-link"><span class="app-nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>Domain &amp; SSL</a>                    </nav>
+                </aside>
+            </asp:PlaceHolder>
+            <div class="app-content">
+                <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %></p>
+            </footer>
+        </div>
+            </div>
+        </div>
+    </form>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+</body>
+</html>
+
+
+
+
+
+
+
