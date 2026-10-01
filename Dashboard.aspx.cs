@@ -81,6 +81,7 @@ namespace CredentialManagementPortal
         {
             try
             {
+                int activeUsers = GetManagedUserCount();
                 int baseTotal;
                 using (SqlConnection con = new SqlConnection(conString))
                 using (SqlCommand cmd = new SqlCommand("dbo.InsertProductKeys", con))
@@ -93,7 +94,7 @@ namespace CredentialManagementPortal
                         if (!reader.Read()) throw new InvalidOperationException("Credential counts were not returned.");
                         lblAxCount.Text = Convert.ToInt32(reader["AXRecords"]).ToString();
                         lblEmailCount.Text = Convert.ToInt32(reader["EmailRecords"]).ToString();
-                        lblUserCount.Text = GetManagedUserCount().ToString();
+                        lblUserCount.Text = activeUsers.ToString();
                         lblProductKeyCount.Text = Convert.ToInt32(reader["ProductKeyRecords"]).ToString();
                         lblVpnCount.Text = Convert.ToInt32(reader["VPNRecords"]).ToString();
                         baseTotal = Convert.ToInt32(reader["TotalRecords"]);
@@ -103,7 +104,7 @@ namespace CredentialManagementPortal
                 int certificates = GetAssetCount("dbo.InsertSSLDetails", "TotalSSL");
                 lblDomainCount.Text = domains.ToString();
                 lblSslCount.Text = certificates.ToString();
-                lblTotalCount.Text = (baseTotal + domains + certificates).ToString();
+                lblTotalCount.Text = (baseTotal + domains + certificates + activeUsers).ToString();
             }
             catch { SetCountsUnavailable(); }
         }
@@ -207,6 +208,8 @@ namespace CredentialManagementPortal
         }
     }
 }
+
+
 
 
 

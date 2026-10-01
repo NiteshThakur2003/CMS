@@ -80,11 +80,12 @@
     <div class="modal-body"><asp:HiddenField ID="hfUserID" runat="server" ClientIDMode="Static" /><div class="row g-3">
         <div class="col-md-6"><asp:Label runat="server" AssociatedControlID="txtUserName" CssClass="form-label" Text="Username" /><asp:TextBox ID="txtUserName" runat="server" ClientIDMode="Static" MaxLength="100" CssClass="form-control" autocomplete="off" /></div>
         <div class="col-md-6"><asp:Label runat="server" AssociatedControlID="ddlRole" CssClass="form-label" Text="Role" /><asp:DropDownList ID="ddlRole" runat="server" ClientIDMode="Static" CssClass="form-select"><asp:ListItem Text="Select a role" Value="" /><asp:ListItem Text="Admin" Value="Admin" /><asp:ListItem Text="User" Value="User" /></asp:DropDownList></div>
-        <asp:Panel ID="pnlPasswordField" runat="server" CssClass="col-12"><asp:Label runat="server" AssociatedControlID="txtPassword" CssClass="form-label" Text="Password" /><asp:TextBox ID="txtPassword" runat="server" ClientIDMode="Static" TextMode="Password" MaxLength="100" CssClass="form-control" autocomplete="new-password" /><small class="credential-field-hint">Enter a password when creating or editing a user.</small></asp:Panel>
+        <asp:Panel ID="pnlPasswordField" runat="server" CssClass="col-12"><asp:Label runat="server" AssociatedControlID="txtPassword" CssClass="form-label" Text="Password" /><asp:TextBox ID="txtPassword" runat="server" ClientIDMode="Static" TextMode="Password" MaxLength="100" CssClass="form-control" autocomplete="new-password" /><small class="credential-field-hint">Required for new users. Optional for edits; leave blank to keep the current password.</small></asp:Panel>
     </div></div>
     <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button><asp:Button ID="btnSaveUser" runat="server" ClientIDMode="Static" Text="Create user" CssClass="btn btn-primary" OnClick="btnSaveUser_Click" /></div>
 </div></div></div>
 </asp:Content>
+
 
 
 

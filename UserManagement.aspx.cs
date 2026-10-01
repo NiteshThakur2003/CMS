@@ -221,22 +221,9 @@ namespace CredentialManagementPortal
 
                 return;
             }
-
-
-            // Password required for both create and update
-            if (String.IsNullOrWhiteSpace(password))
+            if (!editing && String.IsNullOrWhiteSpace(password))
             {
-                if (editing)
-                {
-                    ShowMessage(
-                        "Enter the new password to update this user.");
-                }
-                else
-                {
-                    ShowMessage(
-                        "Enter a password for the new user.");
-                }
-
+                ShowMessage("Enter a password for the new user.");
                 return;
             }
 
@@ -330,11 +317,14 @@ namespace CredentialManagementPortal
                     // PASSWORD
                     // =================================================
 
-                    command.Parameters.Add(
-                        "@Password",
-                        SqlDbType.NVarChar,
-                        100
-                    ).Value = password;
+                    if (!editing || !String.IsNullOrEmpty(password))
+                    {
+                        command.Parameters.Add(
+                            "@Password",
+                            SqlDbType.NVarChar,
+                            100
+                        ).Value = password;
+                    }
 
 
                     // =================================================
@@ -546,7 +536,7 @@ namespace CredentialManagementPortal
 
 
                 txtPassword.Attributes["placeholder"] =
-                    "Enter the new password for this user";
+                    "Optional: enter a new password, or leave blank to keep the current password";
 
 
                 pnlPasswordField.Visible =
@@ -796,4 +786,6 @@ namespace CredentialManagementPortal
         }
     }
 }
+
+
 

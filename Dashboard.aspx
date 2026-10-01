@@ -56,7 +56,7 @@
         <main class="cms-main">
             <h1 class="cms-page-title">Dashboard</h1>
             <section class="metric-grid" aria-label="Credential totals">
-                <article class="metric-card metric-total"><div class="metric-title">Total Records</div><div class="metric-row"><asp:Label ID="lblTotalCount" runat="server" CssClass="metric-value" Text="ï¿½" /><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="5" rx="1.5"/><rect x="4" y="11" width="16" height="5" rx="1.5"/><path d="M7 18.5h10"/></svg></span></div><div class="metric-hint">Across all credential types</div></article>
+                <article class="metric-card metric-total"><div class="metric-title">Total Records</div><div class="metric-row"><asp:Label ID="lblTotalCount" runat="server" CssClass="metric-value" Text="ï¿½" /><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="5" rx="1.5"/><rect x="4" y="11" width="16" height="5" rx="1.5"/><path d="M7 18.5h10"/></svg></span></div><div class="metric-hint">Across all managed records</div></article>
                 <article class="metric-card metric-vpn"><div class="metric-title">VPN Logins</div><div class="metric-row"><asp:Label ID="lblVpnCount" runat="server" CssClass="metric-value" Text="ï¿½" /><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.8 19.5 6v5.1c0 5-3.2 8.3-7.5 10.1-4.3-1.8-7.5-5.1-7.5-10.1V6L12 2.8Z"/><path d="m9.5 12 1.7 1.7 3.5-3.8"/></svg></span></div><a runat="server" href="~/VPNLoingDetails.aspx">View all</a></article>
                 <article class="metric-card metric-ax"><div class="metric-title">AX Logins</div><div class="metric-row"><asp:Label ID="lblAxCount" runat="server" CssClass="metric-value" Text="ï¿½" /><span class="metric-icon">AX</span></div><a runat="server" href="~/AXLoginDetails.aspx">View all</a></article>
                 <article class="metric-card metric-email"><div class="metric-title">Email Accounts</div><div class="metric-row"><asp:Label ID="lblEmailCount" runat="server" CssClass="metric-value" Text="ï¿½" /><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span></div><a runat="server" href="~/EmailAccountDetails.aspx">View all</a></article>
@@ -82,6 +82,7 @@
     </div>
 </div>
 </asp:Content>
+
 
 
 
