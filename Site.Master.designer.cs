@@ -13,8 +13,10 @@ namespace CredentialManagementPortal
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navEmail;
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navProductKeys;
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navDomainSsl;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor navUserManagement;
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
     }
 }
+
 
 

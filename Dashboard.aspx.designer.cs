@@ -10,9 +10,13 @@ namespace CredentialManagementPortal
         protected global::System.Web.UI.WebControls.Label lblVpnCount;
         protected global::System.Web.UI.WebControls.Label lblAxCount;
         protected global::System.Web.UI.WebControls.Label lblEmailCount;
+        protected global::System.Web.UI.WebControls.Label lblUserCount;
         protected global::System.Web.UI.WebControls.Label lblProductKeyCount;
         protected global::System.Web.UI.WebControls.Label lblDomainCount;
         protected global::System.Web.UI.WebControls.Label lblSslCount;
+        protected global::System.Web.UI.WebControls.Label lblCurrentUserName;
+        protected global::System.Web.UI.WebControls.Label lblCurrentUserRole;
+        protected global::System.Web.UI.WebControls.Label lblAvatarInitial;
         protected global::System.Web.UI.WebControls.LinkButton btnLogout;
         protected global::System.Web.UI.WebControls.Repeater rptRecentActivity;
         protected global::System.Web.UI.WebControls.Panel pnlNoRecentActivity;
@@ -20,6 +24,8 @@ namespace CredentialManagementPortal
         protected global::System.Web.UI.WebControls.Label lblExpiringEmpty;
     }
 }
+
+
 
 
 

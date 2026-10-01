@@ -20,6 +20,10 @@ namespace CredentialManagementPortal
             SetNavState(navEmail, pageName == "EmailAccountDetails");
             SetNavState(navProductKeys, pageName == "ProductKeys");
             SetNavState(navDomainSsl, pageName == "DomainAndSSL");
+            string userRole = Convert.ToString(Session["UserRole"]);
+            bool canViewUsers = String.Equals(userRole, "Admin", StringComparison.OrdinalIgnoreCase);
+            navUserManagement.Visible = canViewUsers;
+            SetNavState(navUserManagement, pageName == "UserManagement");
 
             if (!isLoginPage && Session["AuthenticatedUser"] == null)
             {
@@ -34,5 +38,10 @@ namespace CredentialManagementPortal
         }
     }
 }
+
+
+
+
+
 
 

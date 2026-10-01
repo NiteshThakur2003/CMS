@@ -12,10 +12,21 @@ namespace CredentialManagementPortal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetCurrentUserDisplay();
             if (!IsPostBack) { LoadCounts(); LoadRecentActivity(); LoadExpiringSoon(); }
         }
 
 
+        private void SetCurrentUserDisplay()
+        {
+            string username = Convert.ToString(Session["AuthenticatedUser"]);
+            string role = Convert.ToString(Session["UserRole"]);
+            if (String.IsNullOrWhiteSpace(username)) username = "User";
+            if (String.IsNullOrWhiteSpace(role)) role = "User";
+            lblCurrentUserName.Text = Server.HtmlEncode(username);
+            lblCurrentUserRole.Text = Server.HtmlEncode(role);
+            lblAvatarInitial.Text = Server.HtmlEncode(username.Substring(0, 1).ToUpperInvariant());
+        }
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Clear();
@@ -41,6 +52,8 @@ namespace CredentialManagementPortal
                     SELECT N'Domain', 'domain', DomainName, 'DOM', CreatedDate FROM Domains WHERE CreatedDate IS NOT NULL
                     UNION ALL
                     SELECT N'SSL Certificate', 'ssl', Provider, 'SSL', CreatedDate FROM SSLDetails WHERE CreatedDate IS NOT NULL
+                    UNION ALL
+                    SELECT CASE ActionName WHEN 'CREATE USER' THEN N'User Created' WHEN 'UPDATE USER' THEN N'User Updated' WHEN 'DELETE USER' THEN N'User Deactivated' ELSE N'User Activity' END, 'user', UserName, 'USR', ActionDate FROM UserManagement WHERE ActionDate IS NOT NULL
                 ) AS RecentRecords
                 ORDER BY CreatedDate DESC;";
 
@@ -80,6 +93,7 @@ namespace CredentialManagementPortal
                         if (!reader.Read()) throw new InvalidOperationException("Credential counts were not returned.");
                         lblAxCount.Text = Convert.ToInt32(reader["AXRecords"]).ToString();
                         lblEmailCount.Text = Convert.ToInt32(reader["EmailRecords"]).ToString();
+                        lblUserCount.Text = GetManagedUserCount().ToString();
                         lblProductKeyCount.Text = Convert.ToInt32(reader["ProductKeyRecords"]).ToString();
                         lblVpnCount.Text = Convert.ToInt32(reader["VPNRecords"]).ToString();
                         baseTotal = Convert.ToInt32(reader["TotalRecords"]);
@@ -94,6 +108,15 @@ namespace CredentialManagementPortal
             catch { SetCountsUnavailable(); }
         }
 
+        private int GetManagedUserCount()
+        {
+            using (SqlConnection con = new SqlConnection(conString))
+            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM dbo.UserManagement WHERE IsActive = 1", con))
+            {
+                con.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
         private int GetAssetCount(string procedure, string resultColumn)
         {
             using (SqlConnection con = new SqlConnection(conString))
@@ -175,6 +198,7 @@ namespace CredentialManagementPortal
         {
             lblAxCount.Text = "—";
             lblEmailCount.Text = "—";
+            lblUserCount.Text = "—";
             lblProductKeyCount.Text = "—";
             lblDomainCount.Text = "—";
             lblSslCount.Text = "—";
@@ -183,6 +207,10 @@ namespace CredentialManagementPortal
         }
     }
 }
+
+
+
+
 
 
 

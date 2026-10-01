@@ -10,7 +10,34 @@
 @media(max-width:950px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lower-grid{grid-template-columns:1fr}}
 @media(max-width:620px){.cms-dashboard{display:block}.cms-topbar{height:54px;padding:0 14px}.cms-main{padding:20px 14px}.metric-grid{gap:9px}.metric-card{padding:13px;min-height:105px}.metric-title{font-size:12px}.metric-value{font-size:22px}.metric-icon{width:30px;height:30px}}
 .metric-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-</style>
+.app-content>.container.body-content{padding:0}
+@media(min-width:761px){
+ .cms-dashboard{height:100vh;min-height:0;overflow:hidden}
+ .cms-content{height:100%;min-height:0;display:flex;flex-direction:column}
+ .cms-topbar{flex:0 0 62px}
+ .cms-main{height:calc(100vh - 62px);box-sizing:border-box;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+ .metric-grid{flex:0 0 auto}
+ .lower-grid{flex:1;min-height:0;overflow:hidden}
+ .lower-grid>.panel{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+ .expiring-list,.activity-list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+}
+@media(max-height:760px) and (min-width:761px){
+ .cms-main{padding-top:14px;padding-bottom:14px}
+ .cms-page-title{font-size:22px;margin-bottom:12px}
+ .metric-card{min-height:90px;padding:12px 14px}
+ .metric-row{margin:6px 0 3px}
+ .lower-grid{margin-top:12px}
+ .expiring-heading,.activity-heading{padding-top:12px;padding-bottom:10px}
+ .expiring-row,.activity-row{padding-top:8px;padding-bottom:8px}
+}
+@media(max-width:760px){
+ .cms-dashboard{height:auto;min-height:100vh;overflow:visible}
+ .cms-content{height:auto}
+ .cms-main{height:auto;min-height:0;overflow:visible}
+ .lower-grid{overflow:visible}
+ .lower-grid>.panel{height:auto;min-height:0;overflow:visible}
+ .expiring-list,.activity-list{max-height:360px;overflow-y:auto}
+}.metric-user .metric-icon{color:#7654c7;background:#f1edff}.activity-user{background:#f1edff;color:#7654c7}</style>
 <script type="text/javascript">
     function toggleUserMenu(button) {
         var menu = document.getElementById("userMenu");
@@ -24,7 +51,7 @@
         <header class="cms-topbar">
            
            
-            <div class="cms-user"><div><strong>Manish</strong><small>Administrator</small></div><div class="user-menu-wrap"><button type="button" class="cms-avatar" aria-label="Open account menu" aria-expanded="false" onclick="toggleUserMenu(this)">M</button><div id="userMenu" class="user-menu" style="display:none"><asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click">Logout</asp:LinkButton></div></div></div>
+            <div class="cms-user"><div><strong><asp:Label ID="lblCurrentUserName" runat="server" /></strong><small><asp:Label ID="lblCurrentUserRole" runat="server" /></small></div><div class="user-menu-wrap"><button type="button" class="cms-avatar" aria-label="Open account menu" aria-expanded="false" onclick="toggleUserMenu(this)"><asp:Label ID="lblAvatarInitial" runat="server" /></button><div id="userMenu" class="user-menu" style="display:none"><asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click">Logout</asp:LinkButton></div></div></div>
         </header>
         <main class="cms-main">
             <h1 class="cms-page-title">Dashboard</h1>
@@ -34,27 +61,30 @@
                 <article class="metric-card metric-ax"><div class="metric-title">AX Logins</div><div class="metric-row"><asp:Label ID="lblAxCount" runat="server" CssClass="metric-value" Text="ï¿½" /><span class="metric-icon">AX</span></div><a runat="server" href="~/AXLoginDetails.aspx">View all</a></article>
                 <article class="metric-card metric-email"><div class="metric-title">Email Accounts</div><div class="metric-row"><asp:Label ID="lblEmailCount" runat="server" CssClass="metric-value" Text="ï¿½" /><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span></div><a runat="server" href="~/EmailAccountDetails.aspx">View all</a></article>
                 <article class="metric-card metric-product"><div class="metric-title">Product Keys</div><div class="metric-row"><asp:Label ID="lblProductKeyCount" runat="server" CssClass="metric-value" Text="0" /><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8 2 2-2 2 2 2-3 3-2-2-2 2"/></svg></span></div><a runat="server" href="~/ProductKeys.aspx">View all</a></article>
-                <article class="metric-card metric-domain"><div class="metric-title">Domains</div><div class="metric-row"><asp:Label ID="lblDomainCount" runat="server" CssClass="metric-value" Text="0" /><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span></div><a runat="server" href="~/DomainAndSSL.aspx?tab=domains">View all</a></article>
+                <article class="metric-card metric-user"><div class="metric-title">Active Users</div><div class="metric-row"><asp:Label ID="lblUserCount" runat="server" CssClass="metric-value" Text="0" /><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1.5A5.5 5.5 0 0 1 8.5 13h1a5.5 5.5 0 0 1 5.5 5.5V20M17 8h4m-2-2v4"/></svg></span></div><a runat="server" href="~/UserManagement.aspx">View all</a></article>                <article class="metric-card metric-domain"><div class="metric-title">Domains</div><div class="metric-row"><asp:Label ID="lblDomainCount" runat="server" CssClass="metric-value" Text="0" /><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span></div><a runat="server" href="~/DomainAndSSL.aspx?tab=domains">View all</a></article>
                 <article class="metric-card metric-ssl"><div class="metric-title">SSL Certificates</div><div class="metric-row"><asp:Label ID="lblSslCount" runat="server" CssClass="metric-value" Text="0" /><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.8 19.5 6v5.1c0 5-3.2 8.3-7.5 10.1-4.3-1.8-7.5-5.1-7.5-10.1V6L12 2.8Z"/><path d="M12 9v4m0 3h.01"/></svg></span></div><a runat="server" href="~/DomainAndSSL.aspx?tab=ssl">View all</a></article>
             </section>
             <section class="lower-grid">
                 <div class="panel expiring-panel"><div class="expiring-heading"><div><h2>Expiring Soon</h2><p>Domains and SSL certificates due within 90 days</p></div><span class="expiring-window">90 days</span></div>
-                    <asp:Repeater ID="rptExpiringSoon" runat="server"><ItemTemplate>
+                    <div class="expiring-list"><asp:Repeater ID="rptExpiringSoon" runat="server"><ItemTemplate>
                         <div class="expiring-row"><span class='expiring-icon expiring-<%# Eval("AssetTypeKey") %>'><i class='<%# Eval("AssetIcon") %>'></i></span><div class="expiring-copy"><strong><%#: Eval("AssetName") %></strong><small><span class="expiring-kind expiring-kind-<%# Eval("AssetTypeKey") %>"><%#: Eval("AssetTypeLabel") %></span><span><%#: Eval("AssetSubtitle") %></span></small></div><div class="expiring-date"><time><%# Eval("Expiry", "{0:dd MMM yyyy}") %></time><small><%#: GetExpiryText(Eval("DaysRemaining")) %></small></div></div>
                     </ItemTemplate></asp:Repeater>
-                    <asp:Label ID="lblExpiringEmpty" runat="server" CssClass="activity-empty" Visible="false" Text="No domains or SSL certificates expire within the next 90 days." />
+                    <asp:Label ID="lblExpiringEmpty" runat="server" CssClass="activity-empty" Visible="false" Text="No domains or SSL certificates expire within the next 90 days." /></div>
                 </div>
-                <div class="panel activity-panel"><div class="activity-heading"><div><h2>Recent Activity</h2><p>Latest credential records across your workspace</p></div><span class="activity-live"><i></i> Live</span></div>
-                    <asp:Repeater ID="rptRecentActivity" runat="server"><ItemTemplate>
+                <div class="panel activity-panel"><div class="activity-heading"><div><h2>Recent Activity</h2><p>Latest credential and user activity across your workspace</p></div><span class="activity-live"><i></i> Live</span></div>
+                    <div class="activity-list"><asp:Repeater ID="rptRecentActivity" runat="server"><ItemTemplate>
                         <div class="activity-row"><span class='activity-type activity-<%# Eval("ActivityKey") %>'><%# Eval("ActivityIcon") %></span><div class="activity-copy"><strong><%# Eval("ActivityName") %></strong><small><%# Eval("ActivityType") %></small></div><time><%# Eval("CreatedDate", "{0:MMM d, yyyy h:mm tt}") %></time></div>
                     </ItemTemplate></asp:Repeater>
-                    <asp:Panel ID="pnlNoRecentActivity" runat="server" CssClass="activity-empty" Visible="false">No recent records to show.</asp:Panel>
+                    <asp:Panel ID="pnlNoRecentActivity" runat="server" CssClass="activity-empty" Visible="false">No recent records to show.</asp:Panel></div>
                 </div>
             </section>
         </main>
     </div>
 </div>
 </asp:Content>
+
+
+
 
 
 
