@@ -45,7 +45,7 @@
             <div class="tab-pane fade show active" id="domains-pane" role="tabpanel" aria-labelledby="domains-tab" tabindex="0">
                 <div class="credential-toolbar"><div><h2 class="credential-toolbar-title">Domains</h2><p class="credential-toolbar-subtitle">Monitor registrar, DNS, and renewal dates.</p></div><div class="asset-toolbar-actions"><input class="credential-search" type="search" placeholder="Search domains..." aria-label="Search domains" oninput="filterAssetGrid(this,'gvDomains')" /><asp:Button ID="btnAddDomain" runat="server" Text="+ Add Domain" CssClass="credential-primary-button" OnClientClick="openAddAssetModal('domainModal');return false;" /></div></div>
                 <div class="credential-table-wrap">
-                    <asp:GridView ID="gvDomains" runat="server" ClientIDMode="Static" CssClass="table credential-grid" AutoGenerateColumns="False" GridLines="None" DataKeyNames="DomainID" OnRowCommand="gvDomains_RowCommand" Width="100%">
+                    <asp:GridView ID="gvDomains" runat="server" ClientIDMode="Static" CssClass="table credential-grid" AutoGenerateColumns="False" GridLines="None" DataKeyNames="DomainID" OnRowCommand="gvDomains_RowCommand" OnRowDataBound="gvDomains_RowDataBound" Width="100%">
                         <Columns>
                             <asp:BoundField DataField="DomainName" HeaderText="Domain Name" />
                             <asp:BoundField DataField="Registrar" HeaderText="Registrar" />
@@ -65,7 +65,7 @@
             <div class="tab-pane fade" id="ssl-pane" role="tabpanel" aria-labelledby="ssl-tab" tabindex="0">
                 <div class="credential-toolbar"><div><h2 class="credential-toolbar-title">SSL Certificates</h2><p class="credential-toolbar-subtitle">Track certificate providers and renewal deadlines.</p></div><div class="asset-toolbar-actions"><input class="credential-search" type="search" placeholder="Search certificates..." aria-label="Search SSL certificates" oninput="filterAssetGrid(this,'gvSsl')" /><asp:Button ID="btnAddSsl" runat="server" Text="+ Add Certificate" CssClass="credential-primary-button" OnClientClick="openAddAssetModal('sslModal');return false;" /></div></div>
                 <div class="credential-table-wrap">
-                    <asp:GridView ID="gvSsl" runat="server" ClientIDMode="Static" CssClass="table credential-grid" AutoGenerateColumns="False" GridLines="None" DataKeyNames="SSLID" OnRowCommand="gvSsl_RowCommand" Width="100%">
+                    <asp:GridView ID="gvSsl" runat="server" ClientIDMode="Static" CssClass="table credential-grid" AutoGenerateColumns="False" GridLines="None" DataKeyNames="SSLID" OnRowCommand="gvSsl_RowCommand" OnRowDataBound="gvSsl_RowDataBound" Width="100%">
                         <Columns>
                             <asp:BoundField DataField="Provider" HeaderText="SSL Provider" />
                             <asp:BoundField DataField="CertificateType" HeaderText="Certificate Type" />
@@ -104,3 +104,4 @@
     <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button><asp:Button ID="btnSaveSsl" runat="server" Text="Save Certificate" CssClass="btn btn-primary" OnClick="btnSaveSsl_Click" /></div>
 </div></div></div>
 </asp:Content>
+

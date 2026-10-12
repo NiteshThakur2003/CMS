@@ -25,7 +25,7 @@
     <section class="credential-card">
         <div class="credential-toolbar"><div><h2 class="credential-toolbar-title">Saved product licenses</h2><p class="credential-toolbar-subtitle">Product key values are hidden in this list.</p></div><input class="credential-search" type="search" placeholder="Search software, version, or assignee..." aria-label="Search product keys" oninput="filterProductKeys(this)" /></div>
         <div class="credential-table-wrap">
-            <asp:GridView ID="gvProductKeys" runat="server" ClientIDMode="Static" CssClass="table credential-grid" AutoGenerateColumns="False" GridLines="None" DataKeyNames="ProductKeyID" OnRowCommand="gvProductKeys_RowCommand" Width="100%">
+            <asp:GridView ID="gvProductKeys" runat="server" ClientIDMode="Static" CssClass="table credential-grid" AutoGenerateColumns="False" GridLines="None" DataKeyNames="ProductKeyID" OnRowCommand="gvProductKeys_RowCommand" OnRowDataBound="gvProductKeys_RowDataBound" Width="100%">
                 <Columns>
                     <asp:BoundField DataField="Software" HeaderText="Software" />
                     <asp:BoundField DataField="Version" HeaderText="Version" />
@@ -56,4 +56,5 @@
     <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button><asp:Button ID="btnSave" runat="server" Text="Save Product Key" CssClass="btn btn-primary" OnClick="btnSave_Click" /></div>
 </div></div></div>
 </asp:Content>
+
 

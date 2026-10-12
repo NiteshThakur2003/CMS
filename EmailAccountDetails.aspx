@@ -1,4 +1,4 @@
-<%@ Page Title="Email Login Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EmailAccountDetails.aspx.cs" Inherits="CredentialManagementPortal.EmailAccountDetails" %>
+ï»¿<%@ Page Title="Email Login Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EmailAccountDetails.aspx.cs" Inherits="CredentialManagementPortal.EmailAccountDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
@@ -27,11 +27,11 @@
     <section class="credential-card">
         <div class="credential-toolbar"><div><h2 class="credential-toolbar-title">Saved email accounts</h2><p class="credential-toolbar-subtitle">Search by address, department, recovery email, or MFA.</p></div><input class="credential-search" type="search" placeholder="Search email accounts..." aria-label="Search email accounts" oninput="filterGrid(this,'gvEmailAccount')" /></div>
         <div class="credential-table-wrap">
-            <asp:GridView ID="gvEmailAccount" runat="server" ClientIDMode="Static" CssClass="table credential-grid" AutoGenerateColumns="False" GridLines="None" DataKeyNames="EmailLoginID" OnRowCommand="gvEmailAccount_RowCommand" Width="100%">
+            <asp:GridView ID="gvEmailAccount" runat="server" ClientIDMode="Static" CssClass="table credential-grid" AutoGenerateColumns="False" GridLines="None" DataKeyNames="EmailLoginID" OnRowCommand="gvEmailAccount_RowCommand" OnRowDataBound="gvEmailAccount_RowDataBound" Width="100%">
                 <Columns>
                     <asp:BoundField DataField="Department" HeaderText="Department" />
                     <asp:BoundField DataField="EmailID" HeaderText="Email ID" />
-                    <asp:TemplateField HeaderText="Password"><ItemTemplate><span class="text-secondary">••••••••</span></ItemTemplate></asp:TemplateField>
+                    <asp:TemplateField HeaderText="Password"><ItemTemplate><span class="text-secondary">â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢</span></ItemTemplate></asp:TemplateField>
                     <asp:BoundField DataField="RecoveryEmail" HeaderText="Recovery Email" />
                     <asp:BoundField DataField="MFA" HeaderText="MFA" />
                     <asp:TemplateField HeaderText="Actions"><ItemTemplate>
@@ -39,7 +39,7 @@
                         <asp:LinkButton ID="btnDelete" runat="server" CommandName="DeleteRow" CommandArgument='<%# Eval("EmailLoginID") %>' CssClass="btn btn-sm btn-danger" ToolTip="Delete" OnClientClick="return confirm('Delete this email account?');"><i class="bi bi-trash"></i></asp:LinkButton>
                     </ItemTemplate></asp:TemplateField>
                 </Columns>
-                <EmptyDataTemplate><div class="credential-empty"><span class="credential-empty-icon"><i class="bi bi-inbox"></i></span>No email accounts yet. Use “Add Email Account” to create one.</div></EmptyDataTemplate>
+                <EmptyDataTemplate><div class="credential-empty"><span class="credential-empty-icon"><i class="bi bi-inbox"></i></span>No email accounts yet. Use â€œAdd Email Accountâ€ to create one.</div></EmptyDataTemplate>
             </asp:GridView>
         </div>
     </section>
@@ -56,4 +56,5 @@
     <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button><asp:Button ID="btnSave" runat="server" Text="Save Email Account" CssClass="btn btn-primary" OnClick="btnSave_Click" /></div>
 </div></div></div>
 </asp:Content>
+
 

@@ -1,4 +1,4 @@
-<%@ Page Title="VPN Login Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VPNLoingDetails.aspx.cs" Inherits="CredentialManagementPortal.VPNLoingDetails" %>
+Ôªø<%@ Page Title="VPN Login Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VPNLoingDetails.aspx.cs" Inherits="CredentialManagementPortal.VPNLoingDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
@@ -27,12 +27,12 @@
     <section class="credential-card">
         <div class="credential-toolbar"><div><h2 class="credential-toolbar-title">Saved VPN accounts</h2><p class="credential-toolbar-subtitle">Search names, URLs, usernames, MFA, or owners.</p></div><asp:TextBox ID="txtSearch" runat="server" ClientIDMode="Static" TextMode="Search" CssClass="credential-search" placeholder="Search VPN accounts..." aria-label="Search VPN accounts" oninput="filterVpnGrid()" /></div>
         <div class="credential-table-wrap">
-            <asp:GridView ID="gvVPN" runat="server" ClientIDMode="Static" DataKeyNames="VPNID" OnRowCommand="gvVPN_RowCommand" CssClass="table credential-grid" AutoGenerateColumns="False" GridLines="None" Width="100%">
+            <asp:GridView ID="gvVPN" runat="server" ClientIDMode="Static" DataKeyNames="VPNID" OnRowCommand="gvVPN_RowCommand" OnRowDataBound="gvVPN_RowDataBound" CssClass="table credential-grid" AutoGenerateColumns="False" GridLines="None" Width="100%">
                 <Columns>
                     <asp:BoundField HeaderText="VPN Name" DataField="VPNName" />
                     <asp:BoundField HeaderText="URL" DataField="URL" />
                     <asp:BoundField HeaderText="Username" DataField="UserName" />
-                    <asp:TemplateField HeaderText="Password"><ItemTemplate><span class="text-secondary">ïïïïïïïï</span></ItemTemplate></asp:TemplateField>
+                    <asp:TemplateField HeaderText="Password"><ItemTemplate><span class="text-secondary">‚Ä¢‚Ä¢‚Ä¢‚Ä¢‚Ä¢‚Ä¢‚Ä¢‚Ä¢</span></ItemTemplate></asp:TemplateField>
                     <asp:BoundField HeaderText="MFA" DataField="MFA" />
                     <asp:BoundField HeaderText="Owner" DataField="Owner" />
                     <asp:TemplateField HeaderText="Actions"><ItemTemplate>
@@ -40,7 +40,7 @@
                         <asp:LinkButton ID="btnDelete" runat="server" CommandName="DeleteRow" CommandArgument='<%# Eval("VPNID") %>' CssClass="btn btn-sm btn-danger" ToolTip="Delete" OnClientClick="return confirm('Delete this VPN login?');"><i class="bi bi-trash"></i></asp:LinkButton>
                     </ItemTemplate></asp:TemplateField>
                 </Columns>
-                <EmptyDataTemplate><div class="credential-empty"><span class="credential-empty-icon"><i class="bi bi-inbox"></i></span>No VPN accounts yet. Use ìAdd VPN Loginî to create one.</div></EmptyDataTemplate>
+                <EmptyDataTemplate><div class="credential-empty"><span class="credential-empty-icon"><i class="bi bi-inbox"></i></span>No VPN accounts yet. Use ‚ÄúAdd VPN Login‚Äù to create one.</div></EmptyDataTemplate>
             </asp:GridView>
         </div>
     </section>
@@ -59,4 +59,5 @@
     <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button><asp:Button ID="btnSave" runat="server" Text="Save VPN Login" CssClass="btn btn-primary" OnClick="btnSave_Click" /></div>
 </div></div></div>
 </asp:Content>
+
 

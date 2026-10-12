@@ -37,7 +37,22 @@
  .lower-grid{overflow:visible}
  .lower-grid>.panel{height:auto;min-height:0;overflow:visible}
  .expiring-list,.activity-list{max-height:360px;overflow-y:auto}
-}.metric-user .metric-icon{color:#7654c7;background:#f1edff}.activity-user{background:#f1edff;color:#7654c7}</style>
+}.metric-user .metric-icon{color:#7654c7;background:#f1edff}.activity-user{background:#f1edff;color:#7654c7}/* Soft pastel dashboard palette */
+.cms-dashboard{background:linear-gradient(135deg,#f5f8ff 0%,#f7f5ff 48%,#f2f9fb 100%);border-color:#e5eaf5}
+.cms-topbar{background:rgba(255,255,255,.94)}
+.cms-page-title{color:#243b63}
+.metric-card{transition:transform .16s ease,box-shadow .16s ease}
+.metric-card:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(53,79,121,.09)}
+.metric-total{background:#fff8f8;border-color:#f4e5e8}
+.metric-vpn{background:#f5faff;border-color:#e4eef9}
+.metric-ax{background:#f3fbf8;border-color:#e0f0e9}
+.metric-email{background:#fffbf4;border-color:#f3ead8}
+.metric-product{background:#faf8ff;border-color:#ebe5f7}
+.metric-user{background:#f8f6ff;border-color:#e9e3f7}
+.metric-domain{background:#f4faff;border-color:#e0edf8}
+.metric-ssl{background:#f2fbf7;border-color:#deefe7}
+.panel{background:rgba(255,255,255,.96);border-color:#e4eaf2}
+</style>
 <script type="text/javascript">
     function toggleUserMenu(button) {
         var menu = document.getElementById("userMenu");
@@ -82,6 +97,7 @@
     </div>
 </div>
 </asp:Content>
+
 
 
 
