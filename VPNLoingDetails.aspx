@@ -5,6 +5,7 @@
 <link href="~/Content/credential-pages.css" runat="server" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+// @ts-nocheck
     function openModal() { new bootstrap.Modal(document.getElementById('vpnModal')).show(); }
     function openAddModal() {
         var modal = document.getElementById('vpnModal');

@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Configuration;
 using System.Data;
@@ -244,6 +244,29 @@ namespace CredentialManagementPortal
             }
         }
 
+        // Match each activity icon to the icon shown on its dashboard card.
+        protected string GetActivityIconMarkup(object value)
+        {
+            switch (Convert.ToString(value).ToLowerInvariant())
+            {
+                case "vpn":
+                    return "<svg viewBox='0 0 24 24'><path d='M12 2.8 19.5 6v5.1c0 5-3.2 8.3-7.5 10.1-4.3-1.8-7.5-5.1-7.5-10.1V6L12 2.8Z'/><path d='m9.5 12 1.7 1.7 3.5-3.8'/></svg>";
+                case "ax":
+                    return "AX";
+                case "email":
+                    return "<svg viewBox='0 0 24 24'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='m4 7 8 6 8-6'/></svg>";
+                case "product":
+                    return "<svg viewBox='0 0 24 24'><circle cx='8' cy='15' r='4'/><path d='m11 12 8-8 2 2-2 2 2 2-3 3-2-2-2 2'/></svg>";
+                case "domain":
+                    return "<svg viewBox='0 0 24 24'><circle cx='12' cy='12' r='9'/><path d='M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18'/></svg>";
+                case "ssl":
+                    return "<svg viewBox='0 0 24 24'><path d='M12 2.8 19.5 6v5.1c0 5-3.2 8.3-7.5 10.1-4.3-1.8-7.5-5.1-7.5-10.1V6L12 2.8Z'/><path d='M12 9v4m0 3h.01'/></svg>";
+                case "user":
+                    return "<svg viewBox='0 0 24 24'><circle cx='9' cy='8' r='3.5'/><path d='M3 20v-1.5A5.5 5.5 0 0 1 8.5 13h1a5.5 5.5 0 0 1 5.5 5.5V20M17 8h4m-2-2v4'/></svg>";
+                default:
+                    return "<svg viewBox='0 0 24 24'><circle cx='12' cy='12' r='9'/><path d='M12 11v5m0-8h.01'/></svg>";
+            }
+        }
         // Load expiring Domains and SSL certificates
         private void LoadExpiringSoon()
         {
